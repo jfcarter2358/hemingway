@@ -1,4 +1,4 @@
-.PHONY: help build setup
+.PHONY: help build setup benchmark
 
 # https://marmelab.com/blog/2016/02/29/auto-documented-makefile.html
 help: ## Display this help message.
@@ -10,3 +10,6 @@ build: ## Generate and package required data files for using in Hemingway
 
 setup: ## Setup NLTK for data generation
 	python setup/nltk_setup.py
+
+benchmark: ## Benchmark Hemingway against annotated Brown corpus
+	python tests/benchmark/main.py

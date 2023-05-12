@@ -1,5 +1,4 @@
-# from hemingway import pos
-import pos
+import hemingway.pos
 from nltk.corpus import brown
 from pprint import pprint
 
@@ -17,7 +16,7 @@ if __name__ == '__main__':
             if (sent_index + 1) % 100 == 0:
                 print(f'    Processing sentence {sent_index+1} of {sent_total}...')
             tokens = [token[0] for token in sent]
-            tagged = pos.tag_tokens(tokens)
+            tagged = hemingway.pos.tag_tokens(tokens)
 
             for idx, part in enumerate(tagged):
                 if part[1] == sent[idx][1]:
@@ -41,4 +40,4 @@ if __name__ == '__main__':
     print(f'Correct: {percent_correct:.2f}% | {correct}')
     print(f'Wrong  : {percent_wrong:.2f}% | {wrong}')
     print()
-    pprint(sorted(error_report.items(), key=lambda x:x[1]))
+    # pprint(sorted(error_report.items(), key=lambda x:x[1]))
