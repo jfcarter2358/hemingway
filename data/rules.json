@@ -1,0 +1,245 @@
+{
+    "NOUN": [
+        {
+            "and": [
+                {
+                    "left": ["NOUN", "PRON"]
+                },
+                {
+                    "left": ["VERB"]
+                }
+            ]
+        },
+        {
+            "and": [
+                {
+                    "right": ["VERB"]
+                },
+                {
+                    "right": ["NOUN", "PRON"],
+                    "immediate": true,
+                    "not": true
+                }
+            ]
+        },
+        {
+            "and": [
+                {
+                    "left": ["NOUN", "PRON"],
+                    "ignore": ["ADJ", "DET"],
+                    "immediate": true
+                },
+                {
+                    "left": ["CONJ"],
+                    "ignore": ["ADJ", "DET"],
+                    "immediate": true
+                }
+            ]
+        },
+        {
+            "and": [
+                {
+                    "right": ["NOUN", "PRON"],
+                    "ignore": ["ADJ", "DET"],
+                    "immediate": true
+                },
+                {
+                    "right": ["CONJ"],
+                    "ignore": ["ADJ", "DET"],
+                    "immediate": true
+                }
+            ]
+        }
+    ],
+    "VERB": [
+        {
+            "left": ["NOUN", "PRON"]
+        },
+        {
+            "and": [
+                {
+                    "left": ["VERB"],
+                    "immediate": true
+                },
+                {
+                    "in": "auxiliary_verbs"
+                }
+            ]
+        },
+        {
+            "and": [
+                {
+                    "right": ["VERB"],
+                    "immediate": true
+                },
+                {
+                    "in": "auxiliary_verbs"
+                }
+            ]
+        },
+        {
+            "and": [
+                {
+                    "left": ["ADV"],
+                    "immediate": true
+                },
+                {
+                    "in": "auxiliary_verbs"
+                }
+            ]
+        },
+        {
+            "and": [
+                {
+                    "right": ["NOUN", "PRON"]
+                },
+                {
+                    "right": ["VERB"]
+                },
+                {
+                    "in": "auxiliary_verbs"
+                }
+            ]
+        },
+        {
+            "and": [
+                {
+                    "left": ["VERB"],
+                    "ignore": ["ADV"],
+                    "immediate": true
+                },
+                {
+                    "left": ["CONJ"],
+                    "ignore": ["ADV"],
+                    "immediate": true
+                }
+            ]
+        },
+        {
+            "and": [
+                {
+                    "right": ["VERB"],
+                    "ignore": ["ADV"],
+                    "immediate": true
+                },
+                {
+                    "right": ["CONJ"],
+                    "ignore": ["ADV"],
+                    "immediate": true
+                }
+            ]
+        }
+    ],
+    "ADJ": [
+        {
+            "right": ["NOUN", "PRON"],
+            "immediate": true
+        },
+        {
+            "left": ["VERB"]
+        }
+    ],
+    "ADP": [],
+    "ADV": [
+        {
+            "start": true
+        },
+        {
+            "end": true
+        },
+        {
+            "left": ["VERB"],
+            "immediate": true
+        },
+        {
+            "and": [
+                {
+                    "right": ["VERB"]
+                },
+                {
+                    "left": ["VERB"],
+                    "not": true
+                }
+            ]
+        }
+    ],
+    "PRON": [
+        {
+            "and": [
+                {
+                    "left": ["NOUN", "PRON"]
+                },
+                {
+                    "left": ["VERB"]
+                }
+            ]
+        },
+        {
+            "right": ["VERB"]
+        },
+        {
+            "and": [
+                {
+                    "left": ["NOUN", "PRON"],
+                    "ignore": ["ADJ", "DET"],
+                    "immediate": true
+                },
+                {
+                    "left": ["CONJ"],
+                    "ignore": ["ADJ", "DET"],
+                    "immediate": true
+                }
+            ]
+        },
+        {
+            "and": [
+                {
+                    "right": ["NOUN", "PRON"],
+                    "ignore": ["ADJ", "DET"],
+                    "immediate": true
+                },
+                {
+                    "right": ["CONJ"],
+                    "ignore": ["ADJ", "DET"],
+                    "immediate": true
+                }
+            ]
+        }
+    ],
+    "DET": [
+        {
+            "right": ["NOUN", "ADJ", "ADV"]
+        }
+    ],
+    "NUM": [],
+    "CONJ": [
+        {
+            "and": [
+                {
+                    "left": ["NOUN", "PRON"],
+                    "ignore": ["ADJ", "DET"]
+                },
+                {
+                    "right": ["NOUN", "PRON"],
+                    "ignore": ["ADJ", "DET"]
+                }
+            ]
+        },
+        {
+            "and": [
+                {
+                    "left": ["VERB"],
+                    "ignore": ["ADV"]
+                },
+                {
+                    "right": ["VERB"],
+                    "ignore": ["ADV"]
+                }
+            ]
+        }
+    ],
+    "PRT": [],
+    "X": [],
+    "?": [],
+    ".": []
+}
