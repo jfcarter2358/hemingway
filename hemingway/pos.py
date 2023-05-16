@@ -2,6 +2,19 @@
 
 import hemingway.data
 
+UNKNOWN_PROBS_DEFAULT = {
+    "NOUN": 0.9,
+    "VERB": 0.09,
+    "ADJ": 0.009,
+    "ADP": 0.0009,
+    "ADV": 0.00009,
+    "PRON": 0.000009,
+    "DET": 0.0000009,
+    "NUM": 0.00000009,
+    "CONJ": 0.000000009,
+    "PRT": 0.0000000009
+}
+
 def tokenize(text: str) -> list[str]:
     tokens = []
     
@@ -19,13 +32,16 @@ def tokenize(text: str) -> list[str]:
 
     return tokens
 
-def tag_tokens(tokens: list[str]) -> list[tuple[str, str]]:
+def tag_tokens(tokens: list[str], unknown_probs=None) -> list[tuple[str, str]]:
+    if unknown_probs is None:
+        unknown_probs = UNKNOWN_PROBS_DEFAULT
+
     first_pass = []
 
     for token in tokens:
         token = token.lower()
         if not token in hemingway.data.frequencies:
-            lst = [token, ["?"]]
+            lst = [token, unknown_probs]
             first_pass.append(lst)
             continue
         probabilities = {}
@@ -46,7 +62,7 @@ def tag_tokens(tokens: list[str]) -> list[tuple[str, str]]:
             if len(probability.keys()) == 1:
                 continue
             
-            updated = check_rules(probability,tokens, idx, probabilities)
+            updated = check_rules(probability,tokens, idx, probabilities, unknown_probs)
             if len(list(updated.keys())) == 1:
                 collapsed = True
             for pos in updated:
@@ -81,9 +97,9 @@ def tag_tokens(tokens: list[str]) -> list[tuple[str, str]]:
 
     return output
 
-def check_rules(probability: dict, tokens: list, index: int, probabilities: list[dict]) -> dict:
+def check_rules(probability: dict, tokens: list, index: int, probabilities: list[dict], unknown_probs: dict) -> dict:
     if "?" in probability:
-        return {"?": 1.0}
+        return unknown_probs
 
     to_delete = []
     for pos in probability:
@@ -124,7 +140,7 @@ def check_rules(probability: dict, tokens: list, index: int, probabilities: list
         for pos in probability:
             probability[pos] = probability[pos] / total
     elif len(probability) == 0:
-        return {"?": 1.0}
+        return unknown_probs
     else:
         probability[list(probability.keys())[0]] = 1.0
     

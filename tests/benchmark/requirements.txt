@@ -1,1 +1,3 @@
 nltk==3.8.1
+jupyter==1.0.0
+matplotlib==3.7.1

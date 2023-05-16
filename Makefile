@@ -12,4 +12,5 @@ setup: ## Setup NLTK for data generation
 	python setup/nltk_setup.py
 
 benchmark: ## Benchmark Hemingway against annotated Brown corpus
+	pip install .
 	python tests/benchmark/main.py
